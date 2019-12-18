@@ -2,11 +2,12 @@ package com.lgc.boot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class BootApplication {
+public class BootApplication  extends SpringBootServletInitializer {
 
-<<<<<<< HEAD
     public static void main(String[] args) {
         //use yml
 //	      SpringApplication springApplication = new SpringApplication(BootApplication.class);
@@ -14,10 +15,9 @@ public class BootApplication {
 //        springApplication.run(args);
         SpringApplication.run(BootApplication.class, args);
     }
-=======
-	public static void main(String[] args) {
-		SpringApplication.run(BootApplication.class, args);
-	}
->>>>>>> 1c7a9d35f91a8a639dcf10e377225f369c9c039f
 
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(BootApplication.class);
+    }
 }
