@@ -3,10 +3,10 @@ server:
 spring:
   main:
     banner-mode: off
-  security:
-    user:
-      name: lgc
-      password: 123
+#  security:
+#    user:
+#      name: lgc
+#      password: 123
 management:
   endpoint:
     health:
