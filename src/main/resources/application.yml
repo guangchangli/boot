@@ -1,13 +1,51 @@
-server:
-  port: 8090
+#server:
+#  port: 8090
+#  servlet:
+#    context-path: /demo
 spring:
   main:
     banner-mode: off
-#  security:
-#    user:
-#      name: lgc
-#      password: 123
+  security:
+    user:
+      name: lgc
+      password: 123
+## actuator
+#http://localhost:8090/sys/actuator/mappings  mappings
+#http://localhost:8090/sys/actuator/beans     beans
 management:
+  # 端点信息接口使用的端口，为了和主系统接口使用的端口进行分离
+  server:
+    port: 8089
+    servlet:
+      context-path: /sys
+  # 端点健康情况，默认值"never"，设置为"always"可以显示硬盘使用情况和线程情况
   endpoint:
     health:
       show-details: always
+  # 设置端点暴露的哪些内容，默认["health","info"]，设置"*"代表暴露所有可访问的端点
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+      base-path: /actuator
+#      https://blog.csdn.net/alinyua/article/details/80009435
+
+#{"_links":{"self":{"href":"http://172.19.17.159:8089/sys/actuator","templated":false},
+#    "beans":{"href":"http://172.19.17.159:8089/sys/actuator/beans","templated":false},
+#    "caches-cache":{"href":"http://172.19.17.159:8089/sys/actuator/caches/{cache}","templated":true},
+#    "caches":{"href":"http://172.19.17.159:8089/sys/actuator/caches","templated":false},
+#    "health-path":{"href":"http://172.19.17.159:8089/sys/actuator/health/{*path}","templated":true},
+#    "health":{"href":"http://172.19.17.159:8089/sys/actuator/health","templated":false},
+#    "info":{"href":"http://172.19.17.159:8089/sys/actuator/info","templated":false},
+#    "conditions":{"href":"http://172.19.17.159:8089/sys/actuator/conditions","templated":false},
+#    "configprops":{"href":"http://172.19.17.159:8089/sys/actuator/configprops","templated":false},
+#    "env":{"href":"http://172.19.17.159:8089/sys/actuator/env","templated":false},
+#    "env-toMatch":{"href":"http://172.19.17.159:8089/sys/actuator/env/{toMatch}","templated":true},
+#    "loggers-name":{"href":"http://172.19.17.159:8089/sys/actuator/loggers/{name}","templated":true},
+#    "loggers":{"href":"http://172.19.17.159:8089/sys/actuator/loggers","templated":false},
+#    "heapdump":{"href":"http://172.19.17.159:8089/sys/actuator/heapdump","templated":false},
+#    "threaddump":{"href":"http://172.19.17.159:8089/sys/actuator/threaddump","templated":false},
+#    "metrics-requiredMetricName":{"href":"http://172.19.17.159:8089/sys/actuator/metrics/{requiredMetricName}","templated":true},
+#    "metrics":{"href":"http://172.19.17.159:8089/sys/actuator/metrics","templated":false},
+#    "scheduledtasks":{"href":"http://172.19.17.159:8089/sys/actuator/scheduledtasks","templated":false},
+#    "mappings":{"href":"http://172.19.17.159:8089/sys/actuator/mappings","templated":false}}}
